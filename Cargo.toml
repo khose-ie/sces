@@ -4,9 +4,9 @@ members = [
     "main",
     "sces/sces",
     "sces/sces-derive",
-    "sces-addons/sces-svc",
-    "sces-addons/sces-svc-alive",
-    "sces-addons/sces-svc-console",
+    "sces-service/sces-svc",
+    "sces-service/sces-svc-alive",
+    "sces-service/sces-svc-console",
     "sces-implements/sces-cmw",
     "sces-implements/sces-mcu-stm32",
     "sces-implements/sces-os-cmsis"
@@ -19,9 +19,9 @@ debug = true
 [patch.crates-io]
 sces = { path = "sces/sces" }
 sces-derive = { path = "sces/sces-derive" }
-sces-svc = { path = "sces-addons/sces-svc" }
-sces-svc-alive = { path = "sces-addons/sces-svc-alive" }
-sces-svc-console = { path = "sces-addons/sces-svc-console" }
+sces-svc = { path = "sces-service/sces-svc" }
+sces-svc-alive = { path = "sces-service/sces-svc-alive" }
+sces-svc-console = { path = "sces-service/sces-svc-console" }
 sces-cmw = { path = "sces-implements/sces-cmw" }
 sces-mcu-stm32 = { path = "sces-implements/sces-mcu-stm32" }
 sces-os-cmsis = { path = "sces-implements/sces-os-cmsis" }
