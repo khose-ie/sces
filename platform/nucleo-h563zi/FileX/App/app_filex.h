@@ -2,9 +2,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    app_azure_rtos_config.h
+  * @file    app_filex.h
   * @author  MCD Application Team
-  * @brief   app_azure_rtos config header file
+  * @brief   FileX applicative header file
   ******************************************************************************
   * @attention
   *
@@ -18,16 +18,17 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef APP_AZURE_RTOS_CONFIG_H
-#define APP_AZURE_RTOS_CONFIG_H
+#ifndef __APP_FILEX_H__
+#define __APP_FILEX_H__
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-
+#include "fx_api.h"
+#include "fx_stm32_custom_driver.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -39,14 +40,6 @@ extern "C" {
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
-/* Using static memory allocation via threadX Byte memory pools */
-
-#define USE_STATIC_ALLOCATION                    1
-
-#define TX_APP_MEM_POOL_SIZE                     0
-
-#define FX_APP_MEM_POOL_SIZE                     0
-
 /* USER CODE BEGIN EC */
 
 /* USER CODE END EC */
@@ -57,16 +50,22 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
+UINT MX_FileX_Init(VOID *memory_ptr);
+
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+
 /* USER CODE BEGIN PD */
 
 /* USER CODE END PD */
 
+/* USER CODE BEGIN 1 */
+
+/* USER CODE END 1 */
 #ifdef __cplusplus
 }
 #endif
-#endif /* APP_AZURE_RTOS_CONFIG_H */
+#endif /* __APP_FILEX_H__ */

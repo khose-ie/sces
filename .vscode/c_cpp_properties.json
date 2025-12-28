@@ -49,8 +49,12 @@
         {
             "name": "Mac",
             "includePath": [
+                "${workspaceFolder}/**",
                 "${workspaceFolder}/sces-implements/sces-cmw/src-cwraps/inc",
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/threadx/common/inc",
+                "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/threadx/ports/cortex_m33/gnu/inc",
+                "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/filex/common/inc",
+                "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/filex/ports/generic/inc"
             ],
             "defines": [
                 "STM32F429xx",
