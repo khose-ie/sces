@@ -6,7 +6,7 @@
 
 #![allow(dead_code)]
 
-use core::ffi::{c_uchar, c_void};
+use core::ffi::{c_char, c_void};
 
 use sces::os::{
     task::{TaskPriority, TaskState},
@@ -264,13 +264,13 @@ extern "C" {
     // ------------------------------------------------------------------------
 
     /// Create a new event object
-    pub fn sces_event_create(name: *const c_uchar) -> ScesEventHandle;
+    pub fn sces_event_create(name: *const c_char) -> ScesEventHandle;
 
     /// Delete an event object
     pub fn sces_event_delete(event: ScesEventHandle);
 
     /// Get the name of an event object
-    pub fn sces_event_name(event: ScesEventHandle) -> *const c_uchar;
+    pub fn sces_event_name(event: ScesEventHandle) -> *const c_char;
 
     /// Get the current state of an event object
     pub fn sces_event_state(event: ScesEventHandle) -> u32;
@@ -295,12 +295,12 @@ extern "C" {
 
     /// Create a new message queue
     pub fn sces_mq_create(
-        name: *const c_uchar, message_size: u32, message_count: u32,
+        name: *const c_char, message_size: u32, message_count: u32,
     ) -> ScesMessageQueueHandle;
 
     /// Create a new message queue with static buffer
     pub fn sces_mq_create_static(
-        name: *const c_uchar, message_buffer: *mut u8, message_size: u32, message_count: u32,
+        name: *const c_char, message_buffer: *mut u8, message_size: u32, message_count: u32,
     ) -> ScesMessageQueueHandle;
 
     /// Delete a message queue
@@ -310,7 +310,7 @@ extern "C" {
     pub fn sces_mq_delete_static(queue: ScesMessageQueueHandle);
 
     /// Get the name of a message queue
-    pub fn sces_mq_name(queue: ScesMessageQueueHandle) -> *const c_uchar;
+    pub fn sces_mq_name(queue: ScesMessageQueueHandle) -> *const c_char;
 
     /// Get the size of a message in the queue
     pub fn sces_mq_message_size(queue: ScesMessageQueueHandle) -> u32;
@@ -340,12 +340,12 @@ extern "C" {
 
     /// Create a new memory pool
     pub fn sces_mem_pool_create(
-        name: *const c_uchar, block_size: u32, block_count: u32,
+        name: *const c_char, block_size: u32, block_count: u32,
     ) -> ScesMemPoolHandle;
 
     /// Create a new memory pool with static buffer
     pub fn sces_mem_pool_create_static(
-        name: *const c_uchar, pool_buffer: *mut u8, block_size: u32, block_count: u32,
+        name: *const c_char, pool_buffer: *mut u8, block_size: u32, block_count: u32,
     ) -> ScesMemPoolHandle;
 
     /// Delete a memory pool
@@ -355,7 +355,7 @@ extern "C" {
     pub fn sces_mem_pool_delete_static(pool: ScesMemPoolHandle);
 
     /// Get the name of a memory pool
-    pub fn sces_mem_pool_name(pool: ScesMemPoolHandle) -> *const c_uchar;
+    pub fn sces_mem_pool_name(pool: ScesMemPoolHandle) -> *const c_char;
 
     /// Get the size of each memory block in the pool
     pub fn sces_mem_pool_block_size(pool: ScesMemPoolHandle) -> u32;
@@ -377,13 +377,13 @@ extern "C" {
     // ------------------------------------------------------------------------
 
     /// Create a new mutex
-    pub fn sces_mutex_create(name: *const c_uchar) -> ScesMutexHandle;
+    pub fn sces_mutex_create(name: *const c_char) -> ScesMutexHandle;
 
     /// Delete a mutex
     pub fn sces_mutex_delete(mutex: ScesMutexHandle);
 
     /// Get the name of a mutex
-    pub fn sces_mutex_name(mutex: ScesMutexHandle) -> *const c_uchar;
+    pub fn sces_mutex_name(mutex: ScesMutexHandle) -> *const c_char;
 
     /// Get the owner of a mutex
     pub fn sces_mutex_owner(mutex: ScesMutexHandle) -> ScesTaskHandle;
@@ -399,13 +399,13 @@ extern "C" {
     // ------------------------------------------------------------------------
 
     /// Create a new semaphore
-    pub fn sces_semaphore_create(name: *const c_uchar, max_count: u32) -> ScesSemaphoreHandle;
+    pub fn sces_semaphore_create(name: *const c_char, max_count: u32) -> ScesSemaphoreHandle;
 
     /// Delete a semaphore
     pub fn sces_semaphore_delete(semaphore: ScesSemaphoreHandle);
 
     /// Get the name of a semaphore
-    pub fn sces_semaphore_name(semaphore: ScesSemaphoreHandle) -> *const c_uchar;
+    pub fn sces_semaphore_name(semaphore: ScesSemaphoreHandle) -> *const c_char;
 
     /// Get the current count of a semaphore
     pub fn sces_semaphore_count(semaphore: ScesSemaphoreHandle) -> u32;
@@ -422,13 +422,13 @@ extern "C" {
 
     /// Create a new task
     pub fn sces_task_create(
-        name: *const c_uchar, main: extern "C" fn(*mut c_void), arg: *mut c_void, stack_size: u32,
+        name: *const c_char, main: extern "C" fn(*mut c_void), arg: *mut c_void, stack_size: u32,
         priority: ScesTaskPriority,
     ) -> ScesTaskHandle;
 
     /// Create a new task with static stack allocation
     pub fn sces_task_create_static(
-        name: *const c_uchar, main: extern "C" fn(*mut c_void), arg: *mut c_void, stack: *mut u8,
+        name: *const c_char, main: extern "C" fn(*mut c_void), arg: *mut c_void, stack: *mut u8,
         stack_size: u32, priority: ScesTaskPriority,
     ) -> ScesTaskHandle;
 
@@ -439,7 +439,7 @@ extern "C" {
     pub fn sces_task_delete_static(task: ScesTaskHandle);
 
     /// Get the name of a task
-    pub fn sces_task_name(task: ScesTaskHandle) -> *const c_uchar;
+    pub fn sces_task_name(task: ScesTaskHandle) -> *const c_char;
 
     /// Get the stack size of a task
     pub fn sces_task_stack_size(task: ScesTaskHandle) -> u32;
@@ -465,19 +465,19 @@ extern "C" {
 
     /// Create a new one-shot timer
     pub fn sces_timer_create_once(
-        name: *const c_uchar, callback: extern "C" fn(*mut c_void), arg: *mut c_void,
+        name: *const c_char, callback: extern "C" fn(*mut c_void), arg: *mut c_void,
     ) -> ScesTimerHandle;
 
     /// Create a new periodic timer
     pub fn sces_timer_create_periodic(
-        name: *const c_uchar, callback: extern "C" fn(*mut c_void), arg: *mut c_void,
+        name: *const c_char, callback: extern "C" fn(*mut c_void), arg: *mut c_void,
     ) -> ScesTimerHandle;
 
     /// Delete a timer
     pub fn sces_timer_delete(timer: ScesTimerHandle);
 
     /// Get the name of a timer
-    pub fn sces_timer_name(timer: ScesTimerHandle) -> *const c_uchar;
+    pub fn sces_timer_name(timer: ScesTimerHandle) -> *const c_char;
 
     /// Get the current state of a timer
     pub fn sces_timer_state(timer: ScesTimerHandle) -> ScesTimerState;

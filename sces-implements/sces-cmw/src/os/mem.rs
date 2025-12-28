@@ -40,7 +40,7 @@ impl IMemPool for MemPool
     {
         let handle = unsafe {
             sces_mem_pool_create_static(
-                name.as_ptr(),
+                name.as_ptr() as *const i8,
                 buf.as_mut_ptr(),
                 block_size,
                 max_block_count,

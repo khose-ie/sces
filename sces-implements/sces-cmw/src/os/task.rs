@@ -45,7 +45,7 @@ impl ITask for Task
 
         self.main_agent.set_main(main);
         self.handle = 
-            unsafe { sces_task_create(name.as_ptr(), Task::main, self.main_agent.as_ptr(), stack, priority.into()) };
+            unsafe { sces_task_create(name.as_ptr() as *const i8, Task::main, self.main_agent.as_ptr(), stack, priority.into()) };
     
         (!self.handle.is_null()).then_some(()).ok_or(ErrValue::InstanceCreateFailure)
     }

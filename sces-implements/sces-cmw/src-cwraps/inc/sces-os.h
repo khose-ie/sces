@@ -184,7 +184,7 @@ void sces_os_free(void* ptr, uint32_t size);
 /// @details This function creates a new event object with the specified name.
 /// @param name Name of the event object
 /// @return Handle to the created event object or NULL on failure
-scesEventHandle_t sces_event_create(const uint8_t* name);
+scesEventHandle_t sces_event_create(const char* name);
 
 /// @brief  Delete an event object
 /// @details This function deletes the specified event object and frees its resources.
@@ -195,7 +195,7 @@ void sces_event_delete(scesEventHandle_t event);
 /// @details This function retrieves the name of the specified event object.
 /// @param event Handle to the event object
 /// @return Pointer to the event object's name string
-const uint8_t* sces_event_name(scesEventHandle_t event);
+const char* sces_event_name(scesEventHandle_t event);
 
 /// @brief  Get the current state of an event object
 /// @details This function retrieves the current state (flags) of the specified event object.
@@ -243,7 +243,7 @@ scesRetVal_t sces_event_wait_and_clear(scesEventHandle_t event, uint32_t events_
 /// @param message_size  Size of each message in bytes
 /// @param message_count Maximum number of messages the queue can hold
 /// @return Handle to the created message queue or NULL on failure
-scesMessageQueueHandle_t sces_mq_create(const uint8_t* name, uint32_t message_size,
+scesMessageQueueHandle_t sces_mq_create(const char* name, uint32_t message_size,
                                         uint32_t message_count);
 
 /// @brief  Create a new message queue with static buffer
@@ -254,7 +254,7 @@ scesMessageQueueHandle_t sces_mq_create(const uint8_t* name, uint32_t message_si
 /// @param message_size   Size of each message in bytes
 /// @param message_count  Maximum number of messages the queue can hold
 /// @return Handle to the created message queue
-scesMessageQueueHandle_t sces_mq_create_static(const uint8_t* name, uint8_t* message_buffer,
+scesMessageQueueHandle_t sces_mq_create_static(const char* name, uint8_t* message_buffer,
                                                uint32_t message_size, uint32_t message_count);
 
 /// @brief  Delete a message queue
@@ -270,7 +270,7 @@ void sces_mq_delete_static(scesMessageQueueHandle_t queue);
 /// @brief  Get the name of a message queue
 /// @param queue Handle to the message queue
 /// @return Pointer to the message queue's name string
-const uint8_t* sces_mq_name(scesMessageQueueHandle_t queue);
+const char* sces_mq_name(scesMessageQueueHandle_t queue);
 
 /// @brief  Get the size of a message in the queue
 /// @param queue Handle to the message queue
@@ -316,7 +316,7 @@ void sces_mq_clear(scesMessageQueueHandle_t queue);
 /// @param block_size  Size of each memory block in bytes
 /// @param block_count Number of memory blocks in the pool
 /// @return Handle to the created memory pool or NULL on failure
-scesMemPoolHandle_t sces_mem_pool_create(const uint8_t* name, uint32_t block_size,
+scesMemPoolHandle_t sces_mem_pool_create(const char* name, uint32_t block_size,
                                          uint32_t block_count);
 
 /// @brief  Create a new memory pool with static buffer
@@ -327,7 +327,7 @@ scesMemPoolHandle_t sces_mem_pool_create(const uint8_t* name, uint32_t block_siz
 /// @param block_size  Size of each memory block in bytes
 /// @param block_count Number of memory blocks in the pool
 /// @return Handle to the created memory pool or NULL on failure
-scesMemPoolHandle_t sces_mem_pool_create_static(const uint8_t* name, uint8_t* pool_buffer,
+scesMemPoolHandle_t sces_mem_pool_create_static(const char* name, uint8_t* pool_buffer,
                                                 uint32_t block_size, uint32_t block_count);
 
 /// @brief  Delete a memory pool
@@ -343,7 +343,7 @@ void sces_mem_pool_delete_static(scesMemPoolHandle_t pool);
 /// @brief  Get the name of a memory pool
 /// @param pool Handle to the memory pool
 /// @return Pointer to the memory pool's name string
-const uint8_t* sces_mem_pool_name(scesMemPoolHandle_t pool);
+const char* sces_mem_pool_name(scesMemPoolHandle_t pool);
 
 /// @brief  Get the size of each memory block in the pool
 /// @param pool Handle to the memory pool
@@ -379,7 +379,7 @@ void sces_mem_pool_free(scesMemPoolHandle_t pool, void* block);
 /// @details This function creates a new mutex with the specified name.
 /// @param name Name of the mutex
 /// @return Handle to the created mutex or NULL on failure
-scesMutexHandle_t sces_mutex_create(const uint8_t* name);
+scesMutexHandle_t sces_mutex_create(const char* name);
 
 /// @brief  Delete a mutex
 /// @details This function deletes the specified mutex and frees its resources.
@@ -389,7 +389,7 @@ void sces_mutex_delete(scesMutexHandle_t mutex);
 /// @brief  Get the name of a mutex
 /// @param mutex Handle to the mutex
 /// @return Pointer to the mutex's name string
-const uint8_t* sces_mutex_name(scesMutexHandle_t mutex);
+const char* sces_mutex_name(scesMutexHandle_t mutex);
 
 /// @brief  Get the owner of a mutex
 /// @details This function retrieves the handle of the task that currently owns the specified
@@ -417,7 +417,7 @@ scesRetVal_t sces_mutex_unlock(scesMutexHandle_t mutex);
 /// @param name          Name of the semaphore
 /// @param max_count     Maximum count of the semaphore
 /// @return Handle to the created semaphore, or NULL on failure
-scesSemaphoreHandle_t sces_semaphore_create(const uint8_t* name, uint32_t max_count);
+scesSemaphoreHandle_t sces_semaphore_create(const char* name, uint32_t max_count);
 
 /// @brief  Delete a semaphore
 /// @details This function deletes the specified semaphore and frees its resources.
@@ -427,7 +427,7 @@ void sces_semaphore_delete(scesSemaphoreHandle_t semaphore);
 /// @brief  Get the name of a semaphore
 /// @param semaphore Handle to the semaphore
 /// @return Pointer to the semaphore's name string
-const uint8_t* sces_semaphore_name(scesSemaphoreHandle_t semaphore);
+const char* sces_semaphore_name(scesSemaphoreHandle_t semaphore);
 
 /// @brief  Get the current count of a semaphore
 /// @param semaphore Handle to the semaphore
@@ -458,7 +458,7 @@ scesRetVal_t sces_semaphore_release(scesSemaphoreHandle_t semaphore);
 /// @param stack_size  Size of the task's stack in bytes
 /// @param priority    Priority of the task (use SCES_TASK_PRIORITY_* constants)
 /// @return Handle to the created task, or NULL on failure
-scesTaskHandle_t sces_task_create(const uint8_t* name, void (*main)(void*), void* arg,
+scesTaskHandle_t sces_task_create(const char* name, void (*main)(void*), void* arg,
                                   uint32_t stack_size, scesTaskPriority_t priority);
 
 /// @brief  Create a new task with static stack allocation
@@ -471,7 +471,7 @@ scesTaskHandle_t sces_task_create(const uint8_t* name, void (*main)(void*), void
 /// @param stack_size  Size of the task's stack in bytes
 /// @param priority    Priority of the task (use SCES_TASK_PRIORITY_* constants)
 /// @return Handle to the created task, or NULL on failure
-scesTaskHandle_t sces_task_create_static(const uint8_t* name, void (*main)(void*), void* arg,
+scesTaskHandle_t sces_task_create_static(const char* name, void (*main)(void*), void* arg,
                                          uint8_t* stack, uint32_t stack_size,
                                          scesTaskPriority_t priority);
 
@@ -488,7 +488,7 @@ void sces_task_delete_static(scesTaskHandle_t task);
 /// @brief  Get the name of a task
 /// @param task Handle to the task control block
 /// @return Pointer to the task's name string
-const uint8_t* sces_task_name(scesTaskHandle_t task);
+const char* sces_task_name(scesTaskHandle_t task);
 
 /// @brief  Get the current state of a task
 /// @param task Handle to the task control block
@@ -539,14 +539,14 @@ scesRetVal_t sces_task_resume(scesTaskHandle_t task);
 /// @param callback    Pointer to the timer's callback function
 /// @param arg         Argument to be passed to the timer's callback function
 /// @return Handle to the created timer, or NULL on failure
-scesTimerHandle_t sces_timer_create_once(const uint8_t* name, void (*callback)(void*), void* arg);
+scesTimerHandle_t sces_timer_create_once(const char* name, void (*callback)(void*), void* arg);
 
 /// @brief  Create a new periodic timer
 /// @details This function creates a new periodic timer with the specified parameters.
 /// @param name        Name of the timer
 /// @param callback    Pointer to the timer's callback function
 /// @param arg         Argument to be passed to the timer's callback function
-scesTimerHandle_t sces_timer_create_periodic(const uint8_t* name, void (*callback)(void*),
+scesTimerHandle_t sces_timer_create_periodic(const char* name, void (*callback)(void*),
                                              void* arg);
 
 /// @brief  Delete a timer
@@ -557,7 +557,7 @@ void sces_timer_delete(scesTimerHandle_t timer);
 /// @brief  Get the name of a timer
 /// @param timer Handle to the timer
 /// @return Pointer to the timer's name string
-const uint8_t* sces_timer_name(scesTimerHandle_t timer);
+const char* sces_timer_name(scesTimerHandle_t timer);
 
 /// @brief  Get the current state of a timer
 /// @param timer Handle to the timer
