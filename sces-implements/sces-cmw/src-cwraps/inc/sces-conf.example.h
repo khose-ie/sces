@@ -34,10 +34,11 @@
 /// @brief Declaration of the external OS stack memory zone
 /// @details This macro declares an external byte array that serves as the
 ///          memory zone for the OS stack byte pool.
-///     If the SCES_OS_EX_STACK_ZONE macro is not defined, a static array will be created.
+///     If the @ref SCES_OS_EX_STACK_ZONE macro is not defined, and the @ref SCES_OS_EX_STACK_POOL 
+///     macro is also not defined, a static array will be created.
+///     If the @ref SCES_OS_EX_STACK_POOL macro is defined, this macro is ignored.
 /// @attention The size of this zone must be equal to @ref SCES_OS_STACK_SIZE.
 // #define SCES_OS_EX_STACK_ZONE (os_stack_zone)
-
 
 //============================================================================================
 /// @brief OS Memory Pool Configuration
