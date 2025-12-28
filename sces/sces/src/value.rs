@@ -6,63 +6,141 @@ use core::cell::BorrowMutError;
 ///
 /// Every function in sces which will return a result may has exception situation,
 /// and this exception situation, will return an `ErrValue`.
-/// The coller should get the code, judge it and do the related handle process.
+/// The caller should get the code, judge it and do the related handle process.
+///
+/// This enum is aligned with the `scesRetVal_t` enumeration defined in sces.h.
 #[derive(Debug)]
+#[repr(u8)]
 pub enum ErrValue
 {
-    /// No error occurred. This value always has none actual meaning because when no error,
-    /// functions usually return the real value which is mark as `T` in `Result<T, E>`.
+    //===============================
+    // General logic errors 0-31
+    //===============================
+    /// No error occurred. Success.
     None = 0,
 
-    /// Transport a wrong parameters to the called function.
+    /// Invalid parameter passed to function.
     Param = 1,
 
-    /// The bus is still busy and can't do the request operation.
+    /// Resource is busy and cannot perform the operation.
     Busy = 2,
 
-    /// Some operations over the specfic waitting time, or official max time.
+    /// Operation timed out.
     Timeout = 3,
 
-    /// The stack that you want to something into has reached its max limit count.
+    /// Stack overflow occurred.
     StackOverflow = 4,
 
-    /// The permission of the caller could not do the operation.
+    /// Permission denied for the operation.
     Permission = 5,
 
-    /// There is a null pointer or object reference in the processing.
+    /// Null pointer or object reference encountered.
     NullReference = 6,
 
-    /// Memory allocation failed during the operation.
-    MemAllocFailure = 16,
+    /// Operation not supported.
+    NotSupport = 8,
 
-    /// Get an error when try to format a string for a series bytes.
-    FormatFailure = 17,
+    /// Resource not available.
+    NotAvailable = 9,
 
-    /// Some low level operation failed during the operation.
-    LowLevelFailure = 18,
+    //===============================
+    // Basic operation errors 32-47
+    //===============================
+    /// Memory allocation failed.
+    MemAllocFailure = 32,
 
-    /// Create some sub instance failed during the operation.
-    InstanceCreateFailure = 32,
+    /// Format operation failed.
+    FormatFailure = 33,
 
-    /// The target instance could not be found during the operation.
-    InstanceNotFound = 33,
+    /// Low-level API operation failed.
+    LowLevelFailure = 34,
 
-    /// Attempt to crate an unique instance more than once.
-    InstanceDuplicate = 34,
+    //===============================
+    // Instance management errors 48-63
+    //===============================
+    /// Failed to create instance.
+    InstanceCreateFailure = 48,
 
-    /// The instance is in use and could not borrow it.
-    InstanceInUse = 35,
+    /// Instance not found.
+    InstanceNotFound = 49,
 
-    /// The instance is invalid for the operation.
-    InstanceInvalid = 36,
+    /// Instance already exists (duplicate).
+    InstanceDuplicate = 50,
 
-    /// The feature includes this operation is not enabled in this distribution.
-    NotSupport = 48,
+    /// Instance is in use and cannot be borrowed.
+    InstanceInUse = 51,
 
-    /// Some must modules of this operation are not available.
-    NotAvailable = 49,
+    /// Instance is unavailable.
+    InstanceUnavailable = 52,
 
-    /// Unknown reason errors.
+    //===============================
+    // MCU specific errors 64-79
+    //===============================
+    /// MCU hardware failure.
+    McuHwFailure = 64,
+
+    /// MCU clock or timing error.
+    McuClockFailure = 65,
+
+    /// Unexpected MCU reset.
+    McuReset = 66,
+
+    //===============================
+    // OS specific errors 80-95
+    //===============================
+    /// OS kernel operation failed.
+    OsKernelErr = 80,
+
+    /// OS event operation failed.
+    OsEventErr = 81,
+
+    /// OS memory pool operation failed.
+    OsMemPoolErr = 82,
+
+    /// OS message queue operation failed.
+    OsMessageQueueErr = 83,
+
+    /// OS mutex operation failed.
+    OsMutexErr = 84,
+
+    /// OS semaphore operation failed.
+    OsSemaphoreErr = 85,
+
+    /// OS task operation failed.
+    OsTaskErr = 86,
+
+    /// OS timer operation failed.
+    OsTimerErr = 87,
+
+    //===============================
+    // File system errors 96-111
+    //===============================
+    /// File system mount failure.
+    FsMountFailure = 96,
+
+    /// Directory is not empty.
+    FsDirNotEmpty = 97,
+
+    /// Not a file.
+    FsNotFile = 98,
+
+    /// Not a directory.
+    FsNotDir = 99,
+
+    //===============================
+    // Network errors 112-127
+    //===============================
+    // Reserved for future use
+
+    //===============================
+    // Peripheral extension errors 128-254
+    //===============================
+    // Reserved for future use
+
+    //===============================
+    // Unknown error 255
+    //===============================
+    /// Unknown error occurred.
     Unknown = 255,
 }
 

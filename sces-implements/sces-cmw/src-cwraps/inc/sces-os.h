@@ -13,6 +13,10 @@
 #include <sces.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define SCES_OS_WAIT_NO      0
 #define SCES_OS_WAIT_FOREVER UINT32_MAX
 
@@ -571,5 +575,9 @@ scesRetVal_t sces_timer_start(scesTimerHandle_t timer, uint32_t timeout);
 /// @details This function stops the specified timer.
 /// @param timer Handle to the timer
 void sces_timer_stop(scesTimerHandle_t timer);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // __SCES_CMW_SCES_OS_H__

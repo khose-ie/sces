@@ -6,29 +6,85 @@
 /// @details This header file defines common types and return values used across the SCES
 ///          middleware and its components.
 /// @author Khose-ie<khose-ie@outlook.com>
+/// @date   2024-06-27
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /// @brief Standard return value enumeration
 /// @details Represents standard return values for SCES functions
 typedef enum
 {
-    SCES_RET_OK                          = 0,
-    SCES_RET_ERR_PARAM                   = 1,
-    SCES_RET_ERR_BUSY                    = 2,
-    SCES_RET_ERR_TIMEOUT                 = 3,
-    SCES_RET_ERR_STACK_OVERFLOW          = 4,
-    SCES_RET_ERR_PERMISSION              = 5,
-    SCES_RET_ERR_NULL_REF                = 6,
-    SCES_RET_ERR_MEM_ALLOC_FAILURE       = 16,
-    SCES_RET_ERR_FORMAT_FAILURE          = 17,
-    SCES_RET_ERR_LOW_LEVEL_FAILURE       = 18,
-    SCES_RET_ERR_INSTANCE_CREATE_FAILURE = 32,
-    SCES_RET_ERR_INSTANCE_NOT_FOUND      = 33,
-    SCES_RET_ERR_INSTANCE_DUPLICATE      = 34,
-    SCES_RET_ERR_INSTANCE_IN_USE         = 35,
-    SCES_RET_ERR_INSTANCE_INVALID        = 36,
-    SCES_RET_ERR_NOT_SUPPORT             = 48,
-    SCES_RET_ERR_NOT_AVAILABLE           = 49,
-    SCES_RET_ERR_UNKNOWN                 = 255
+    //===============================
+    // General logic errors 0-31
+    //===============================
+    SCES_RET_OK             = 0, ///< Success
+    SCES_RET_PARAM_ERR      = 1, ///< Invalid parameter
+    SCES_RET_BUSY           = 2, ///< Resource busy
+    SCES_RET_TIMEOUT        = 3, ///< Timeout occurred
+    SCES_RET_STACK_OVERFLOW = 4, ///< Stack overflow
+    SCES_RET_PERMISSION     = 5, ///< Permission denied
+    SCES_RET_NULL_REF       = 6, ///< Null pointer reference
+
+    SCES_RET_NOT_SUPPORT   = 8, ///< Operation not supported
+    SCES_RET_NOT_AVAILABLE = 9, ///< Resource not available
+
+    //===============================
+    //  Basic operation errors 32-47
+    //===============================
+    SCES_RET_MEM_ALLOC_FAILURE = 32, ///< Memory allocation failure
+    SCES_RET_FORMAT_FAILURE    = 33, ///< Format failure
+    SCES_RET_LOW_LEVEL_FAILURE = 34, ///< Low-level API failure
+
+    //===============================
+    //  Instance management errors 48-63
+    //===============================
+    SCES_RET_INSTANCE_CREATE_FAILURE = 48, ///< Failed to create instance
+    SCES_RET_INSTANCE_NOT_FOUND      = 49, ///< Instance not found
+    SCES_RET_INSTANCE_DUPLICATE      = 50, ///< Instance already exists
+    SCES_RET_INSTANCE_IN_USE         = 51, ///< Instance is in use
+    SCES_RET_INSTANCE_UNAVAILABLE    = 52, ///< Instance unavailable
+
+    //===============================
+    //  MCU specific errors 64-79
+    //===============================
+    SCES_RET_MCU_HW_FAILURE    = 64, ///< MCU hardware failure
+    SCES_RET_MCU_CLOCK_FAILURE = 65, ///< MCU clock or timing error
+    SCES_RET_MCU_RESET         = 66, ///< Unexpected MCU reset
+
+    //===============================
+    //  OS specific errors 80-95
+    //===============================
+    SCES_RET_OS_KERNEL_ERR    = 80, ///< OS kernel operation failed
+    SCES_RET_OS_EVENT_ERR     = 81, ///< Task deletion failed
+    SCES_RET_OS_MEM_POOL_ERR  = 82, ///< Memory pool operation failed
+    SCES_RET_OS_MQ_ERR        = 83, ///< Message queue operation failed
+    SCES_RET_OS_MUTEX_ERR     = 84, ///< Mutex operation failed
+    SCES_RET_OS_SEMAPHORE_ERR = 85, ///< Semaphore operation failed
+    SCES_RET_OS_TASK_ERR      = 86, ///< Task deletion failed
+    SCES_RET_OS_TIMER_ERR     = 87, ///< Timer creation failed
+
+    //===============================
+    //  File system errors 96-111
+    //===============================
+    SCES_RET_FS_MOUNT_FAILURE = 96, ///< File system mount failure
+    SCES_RET_FS_DIR_NOT_EMPTY = 97, ///< File system unmount error
+    SCES_RET_FS_NOT_FILE      = 98, ///< Not a file
+    SCES_RET_FS_NOT_DIR       = 99, ///< Not a directory
+
+    //===============================
+    //  Network errors 112-127
+    //===============================
+
+    //===============================
+    //  Peripheral extension errors 128-254
+    //===============================
+
+    //===============================
+    //  Unknown error 255
+    //===============================
+    SCES_RET_UNKNOWN = 255 ///< Unknown error
 } scesRetVal_t;
 
 #endif // __SCES_CMW_SCES_H__
