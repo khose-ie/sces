@@ -89,12 +89,22 @@ pub enum ScesRetVal
     //===============================
     /// File system mount failure.
     FsMountFailure = 96,
-    /// Directory is not empty.
-    FsDirNotEmpty = 97,
+    /// File system format failure.
+    FsFormatFailure = 97,
+    /// No valid file system found.
+    FsNotValidFs = 98,
     /// Not a file.
-    FsNotFile = 98,
+    FsNotFile = 99,
     /// Not a directory.
-    FsNotDir = 99,
+    FsNotDir = 100,
+    /// Directory is not empty.
+    FsDirNotEmpty = 101,
+    /// Disk not ready.
+    FsDiskNotReady = 102,
+    /// Disk write protected.
+    FsDiskWriteProtected = 103,
+    /// Low-level disk I/O error.
+    FsDiskIoErr = 104,
 
     //===============================
     // Unknown error 255
@@ -138,9 +148,14 @@ impl From<ScesRetVal> for ErrValue
             ScesRetVal::OsTaskErr => ErrValue::OsTaskErr,
             ScesRetVal::OsTimerErr => ErrValue::OsTimerErr,
             ScesRetVal::FsMountFailure => ErrValue::FsMountFailure,
-            ScesRetVal::FsDirNotEmpty => ErrValue::FsDirNotEmpty,
+            ScesRetVal::FsFormatFailure => ErrValue::FsFormatFailure,
+            ScesRetVal::FsNotValidFs => ErrValue::FsNotValidFs,
             ScesRetVal::FsNotFile => ErrValue::FsNotFile,
             ScesRetVal::FsNotDir => ErrValue::FsNotDir,
+            ScesRetVal::FsDirNotEmpty => ErrValue::FsDirNotEmpty,
+            ScesRetVal::FsDiskNotReady => ErrValue::FsDiskNotReady,
+            ScesRetVal::FsDiskWriteProtected => ErrValue::FsDiskWriteProtected,
+            ScesRetVal::FsDiskIoErr => ErrValue::FsDiskIoErr,
             ScesRetVal::Unknown => ErrValue::Unknown,
         }
     }
@@ -181,9 +196,14 @@ impl From<ErrValue> for ScesRetVal
             ErrValue::OsTaskErr => ScesRetVal::OsTaskErr,
             ErrValue::OsTimerErr => ScesRetVal::OsTimerErr,
             ErrValue::FsMountFailure => ScesRetVal::FsMountFailure,
-            ErrValue::FsDirNotEmpty => ScesRetVal::FsDirNotEmpty,
+            ErrValue::FsFormatFailure => ScesRetVal::FsFormatFailure,
+            ErrValue::FsNotValidFs => ScesRetVal::FsNotValidFs,
             ErrValue::FsNotFile => ScesRetVal::FsNotFile,
             ErrValue::FsNotDir => ScesRetVal::FsNotDir,
+            ErrValue::FsDirNotEmpty => ScesRetVal::FsDirNotEmpty,
+            ErrValue::FsDiskNotReady => ScesRetVal::FsDiskNotReady,
+            ErrValue::FsDiskWriteProtected => ScesRetVal::FsDiskWriteProtected,
+            ErrValue::FsDiskIoErr => ScesRetVal::FsDiskIoErr,
             ErrValue::Unknown => ScesRetVal::Unknown,
         }
     }

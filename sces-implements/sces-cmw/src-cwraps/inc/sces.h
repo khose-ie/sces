@@ -68,10 +68,15 @@ typedef enum
     //===============================
     //  File system errors 96-111
     //===============================
-    SCES_RET_FS_MOUNT_FAILURE = 96, ///< File system mount failure
-    SCES_RET_FS_DIR_NOT_EMPTY = 97, ///< File system unmount error
-    SCES_RET_FS_NOT_FILE      = 98, ///< Not a file
-    SCES_RET_FS_NOT_DIR       = 99, ///< Not a directory
+    SCES_RET_FS_MOUNT_FAILURE     = 96,  ///< File system mount failure
+    SCES_RET_FS_FORMAT_FAILURE    = 97,  ///< File system format failure
+    SCES_RET_FS_NOT_VALID_FS      = 98,  ///< No valid file system found
+    SCES_RET_FS_NOT_FILE          = 99,  ///< Not a file
+    SCES_RET_FS_NOT_DIR           = 100, ///< Not a directory
+    SCES_RET_FS_DIR_NOT_EMPTY     = 101, ///< File system unmount error
+    SCES_RET_FS_DISK_NOT_READY    = 102, ///< Disk not ready
+    SCES_RET_DISK_WRITE_PROTECTED = 103, ///< Disk write protected
+    SCES_RET_DISK_IO_ERR          = 104, ///< Low-level disk I/O error
 
     //===============================
     //  Network errors 112-127
@@ -86,5 +91,10 @@ typedef enum
     //===============================
     SCES_RET_UNKNOWN = 255 ///< Unknown error
 } scesRetVal_t;
+
+/// @brief Type used for memory alignment
+/// @details This type is used to ensure proper memory alignment for dynamic allocations.
+#define sces_aligned_sizeof(type, aligned_type)                                                    \
+    (((sizeof(type) + (sizeof(aligned_type))) - ((aligned_type)1)) / sizeof(aligned_type))
 
 #endif // __SCES_CMW_SCES_H__

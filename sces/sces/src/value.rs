@@ -118,14 +118,29 @@ pub enum ErrValue
     /// File system mount failure.
     FsMountFailure = 96,
 
-    /// Directory is not empty.
-    FsDirNotEmpty = 97,
+    /// File system format failure.
+    FsFormatFailure = 97,
+
+    /// No valid file system found.
+    FsNotValidFs = 98,
 
     /// Not a file.
-    FsNotFile = 98,
+    FsNotFile = 99,
 
     /// Not a directory.
-    FsNotDir = 99,
+    FsNotDir = 100,
+
+    /// Directory is not empty.
+    FsDirNotEmpty = 101,
+
+    /// Disk not ready.
+    FsDiskNotReady = 102,
+
+    /// Disk write protected.
+    FsDiskWriteProtected = 103,
+
+    /// Low-level disk I/O error.
+    FsDiskIoErr = 104,
 
     //===============================
     // Network errors 112-127
