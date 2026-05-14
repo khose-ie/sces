@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/sces-implements/sces-cmw/src-cwraps/inc",
+                "${workspaceFolder}/sces-wraps/wrap/inc",
                 "${workspaceFolder}/**"
             ],
             "defines": [
@@ -26,7 +26,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/sces-implements/sces-cmw/src-cwraps/inc",
+                "${workspaceFolder}/sces-wraps/wrap/inc",
                 "${workspaceFolder}/**"
             ],
             "defines": [
@@ -50,7 +50,7 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/sces-implements/sces-cmw/src-cwraps/inc",
+                "${workspaceFolder}/sces-wraps/wrap/inc",
                 "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/threadx/common/inc",
                 "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/threadx/ports/cortex_m33/gnu/inc",
                 "${workspaceFolder}/platform/nucleo-h563zi/Middlewares/ST/filex/common/inc",

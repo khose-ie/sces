@@ -1,3 +1,6 @@
 [submodule "warp-threadx"]
 	path = sces-wraps/sces-wrap-threadx
 	url = https://github.com/khose-ie/sces-wrap-threadx.git
+[submodule "warp"]
+	path = sces-wraps/wrap
+	url = https://github.com/khose-ie/sces-wrap.git
