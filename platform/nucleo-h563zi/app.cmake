@@ -6,7 +6,7 @@ set(APP_INCS
 )
 
 set(APP_SRCS
-    ${BASE}/sces-wraps/sces-wrap-threadx/src/threadx.c
+    ${BASE}/sces-wraps/wrap-threadx/src/threadx.c
     CACHE STRING ""
 )
 
