@@ -16,29 +16,8 @@
 /// @details These constants and macros define the configuration for the OS stack byte pool.
 //============================================================================================
 
-/// @brief Size of the OS stack memory zone
-/// @details This constant defines the size (in bytes) of the memory zone
-///          allocated for the OS stack byte pool.
-///          If you always use static stack allocation APIs, you can reduce this size
-///          to save memory due to only management blocks are allocated from this pool.
-/// @attention Modify this value according to your application's needs and this value
-///            must be defined and aligned to uint32_t.
 #define SCES_OS_STACK_SIZE (1024 * 60)
-
-/// @brief Declaration of external the OS stack pool
-/// @details This macro declares an external byte array that serves as the
-///          memory pool for the OS stack byte pool.
-///     If the SCES_OS_EX_STACK_POOL macro is not defined, a static byte pool will be created.
-// #define SCES_OS_EX_STACK_POOL (os_stack)
-
-/// @brief Declaration of the external OS stack memory zone
-/// @details This macro declares an external byte array that serves as the
-///          memory zone for the OS stack byte pool.
-///     If the @ref SCES_OS_EX_STACK_ZONE macro is not defined, and the @ref SCES_OS_EX_STACK_POOL
-///     macro is also not defined, a static array will be created.
-///     If the @ref SCES_OS_EX_STACK_POOL macro is defined, this macro is ignored.
-/// @attention The size of this zone must be equal to @ref SCES_OS_STACK_SIZE.
-// #define SCES_OS_EX_STACK_ZONE (os_stack_zone)
+// #define SCES_OS_STACK_EX_MEM (os_stack_mem)
 
 //============================================================================================
 /// @brief OS Memory Pool Configuration
@@ -46,44 +25,13 @@
 ///          Modify these values according to your application's memory allocation patterns.
 //============================================================================================
 
-/// @brief Memory pool block size configuration #1
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKSZ_1 (256)
-
-/// @brief Memory pool block size configuration #2
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKSZ_2 (512)
-
-/// @brief Memory pool block size configuration #3
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKSZ_3 (1024)
-
-/// @brief Memory pool block size configuration #4
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKSZ_4 (2048)
-
-/// @brief Memory pool block count configuration #1
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKCT_1 (32)
-
-/// @brief Memory pool block count configuration #2
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKCT_2 (16)
-
-/// @brief Memory pool block count configuration #3
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKCT_3 (8)
-
-/// @brief Memory pool block count configuration #4
-/// @details These constants define the block sizes and counts for the OS memory pool.
-///          Modify these values according to your application's memory allocation patterns.
 #define SCES_OS_MEM_POOL_BKCT_4 (4)
 
 ///============================================================================================
@@ -92,37 +40,8 @@
 ///          Modify these values according to your application's file system requirements.
 ///============================================================================================
 
-/// @brief Number of file system media instances
-/// @details This constant defines the number of file system media instances supported.
-///     Modify this value according to your application's needs.
 #define SCES_FS_MEDIA_COUNT (1)
-
-/// @brief Set the stack defined location, for example in CCMRAM
-/// @details This macro defines the memory section attribute for the FS stack memory zone.
-///     Modify this macro according to your compiler and linker settings.
-// #define SCES_FS_STACK_LOCATION __attribute__((section(".ccmram")))
-
-/// @brief Size of each media work stack block
-/// @details This constant defines the size (in bytes) of each media work stack block.
-///     Modify this value according to your application's needs and the requirements
-///     of the underlying file system used.
 #define SCES_FS_WORK_STACK_SIZE (4096)
-
-/// @brief Set the work defined location, for example in CCMRAM
-/// @details This macro defines the memory section attribute for the FS stack memory zone.
-///     Modify this macro according to your compiler and linker settings.
-// #define SCES_FS_WORK_LOCATION __attribute__((section(".ccmram")))
-
-/// @brief Size of the FS stack memory zone
-/// @details This constant defines the size (in bytes) of the memory zone
-///          allocated for the FS stack byte pool.
-///          If you always use static stack allocation APIs, you can reduce this size
-///          to save memory due to only management blocks are allocated from this pool.
 #define SCES_FS_MAX_OPEN_COUNT (8)
-
-/// @brief Set the open handle defined location, for example in CCMRAM
-/// @details This macro defines the memory section attribute for the FS stack memory zone.
-///     Modify this macro according to your compiler and linker settings.
-// #define SCES_FS_OPEN_HANDLE_LOCATION __attribute__((section(".ccmram")))
 
 #endif // __SCES_CONF_H__
